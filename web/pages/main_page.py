@@ -38,9 +38,9 @@ class MainPage:
 
 
 @pytest.fixture(scope='function')
-def add_product_to_cart(browser_management):
-    browser_management.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
-    browser_management.all('[data-qa="product-add-to-cart-button"]').first.click()
+def add_product_to_cart(driver_management):
+    driver_management.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
+    driver_management.all('[data-qa="product-add-to-cart-button"]').first.click()
     ModalPage().click_close_button()
     MainPage().click_cart_button()
 
@@ -48,10 +48,10 @@ def add_product_to_cart(browser_management):
 
 
 @pytest.fixture(scope='function')
-def add_product_to_favorites(browser_management):
-    browser_management.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
-    browser_management.all('[data-qa="product-vertical-toggle-favorites"]').first.click()
-    browser_management.element('[data-qa="favorites-badge"]').should(be.visible)
+def add_product_to_favorites(driver_management):
+    driver_management.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
+    driver_management.all('[data-qa="product-vertical-toggle-favorites"]').first.click()
+    driver_management.element('[data-qa="favorites-badge"]').should(be.visible)
     MainPage().click_favourites_button()
 
     yield FavoritesPage

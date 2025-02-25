@@ -1,6 +1,6 @@
 import allure
 
-from tests.conftest import browser_management
+from tests.conftest import driver_management
 from web.pages.favorites_page import FavoritesPage
 from web.pages.main_page import MainPage, add_product_to_favorites
 
@@ -11,8 +11,8 @@ from web.pages.main_page import MainPage, add_product_to_favorites
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.label("owner", "Vladislav Bubnov")
 @allure.description("Тест проверяет изменение счетчика товаров в избранном")
-def test_count_product_cart(browser_management):
-    browser = browser_management
+def test_count_product_cart(driver_management):
+    browser = driver_management
     main_page = MainPage()
     index = 1
 
@@ -32,8 +32,8 @@ def test_count_product_cart(browser_management):
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.label("owner", "Vladislav Bubnov")
 @allure.description("Тест проверяет добавление товара в избранное")
-def test_add_product_to_favourites(browser_management):
-    browser = browser_management
+def test_add_product_to_favourites(driver_management):
+    browser = driver_management
     main_page = MainPage()
     favorites_page = FavoritesPage()
     index = 1

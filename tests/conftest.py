@@ -48,7 +48,7 @@ def driver_management(request):
         allure_utils.attach_video(browser)
         allure_utils.attach_screenshot(browser)
 
-    if project_config.context in ['bstack', 'local_emulator', 'local_real']:
+    if project_config.context in ['bstack', 'local_emulator']:
         allure_utils.attach_mobile_page_source(browser)
 
     if project_config.context != 'api':
