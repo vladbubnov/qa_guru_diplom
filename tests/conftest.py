@@ -40,7 +40,7 @@ def driver_management(request):
         with allure.step('Start api test'):
             pass
 
-    yield
+    yield browser
 
     if request.param == 'web':
         allure_utils.attach_html(browser)
