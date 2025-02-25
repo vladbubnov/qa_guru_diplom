@@ -1,5 +1,6 @@
 import allure
 
+from tests import conftest
 from tests.conftest import driver_management
 from web.pages.cart_page import CartPage
 from web.pages.main_page import MainPage
@@ -14,6 +15,7 @@ class TestCart:
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Vladislav Bubnov")
     @allure.description("Тест проверяет изменение счетчика товаров в корзине")
+    @conftest.web
     def test_count_product_cart(self, driver_management):
         browser = driver_management
         main_page = MainPage()
@@ -32,6 +34,7 @@ class TestCart:
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Vladislav Bubnov")
     @allure.description("Тест проверяет добавление товара в корзину")
+    @conftest.web
     def test_add_product_to_cart(self, driver_management):
         browser = driver_management
         main_page = MainPage()
@@ -57,6 +60,7 @@ class TestCart:
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Vladislav Bubnov")
     @allure.description("Тест проверяет удаление товара из корзины")
+    @conftest.web
     def test_remove_product_from_cart(self, add_product_to_cart):
         cart_page = CartPage()
         with allure.step("Добавляем товар в корзину"):
