@@ -29,15 +29,15 @@ class Config(BaseSettings):
     # android_device_uid: str = ''
     # android_avd: str = ''
 
-    @property
-    def bstack_credentials(self):
-        load_dotenv(file.relative_from_root('.env.bstack_credentials'))
-        self.bstack_userName = os.getenv('bstack_userName')
-        self.bstack_accessKey = os.getenv('bstack_accessKey')
-        return {
-            'userName': self.bstack_userName,
-            'accessKey': self.bstack_accessKey
-        }
+    # @property
+    # def bstack_credentials(self):
+    #     load_dotenv(file.relative_from_root('.env.bstack_credentials'))
+    #     self.bstack_userName = os.getenv('bstack_userName')
+    #     self.bstack_accessKey = os.getenv('bstack_accessKey')
+    #     return {
+    #         'userName': self.bstack_userName,
+    #         'accessKey': self.bstack_accessKey
+    #     }
 
     def get_selenoid_link(self):
         load_dotenv(file.relative_from_root('.env.selenoid_credentials'))
