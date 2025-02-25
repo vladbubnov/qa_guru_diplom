@@ -1,4 +1,5 @@
 import allure
+import pytest
 
 from tests import conftest
 from tests.conftest import driver_management
@@ -15,6 +16,7 @@ class TestFavorites:
     @allure.label("owner", "Vladislav Bubnov")
     @allure.description("Тест проверяет изменение счетчика товаров в избранном")
     @conftest.web
+    @pytest.mark.web
     def test_count_product_cart(self, driver_management):
         browser = driver_management
         main_page = MainPage()
@@ -34,6 +36,7 @@ class TestFavorites:
     @allure.label("owner", "Vladislav Bubnov")
     @allure.description("Тест проверяет добавление товара в избранное")
     @conftest.web
+    @pytest.mark.web
     def test_add_product_to_favourites(self, driver_management):
         browser = driver_management
         main_page = MainPage()
@@ -60,6 +63,7 @@ class TestFavorites:
     @allure.label("owner", "Vladislav Bubnov")
     @allure.description("Тест проверяет удаление товара из избранного")
     @conftest.web
+    @pytest.mark.web
     def test_remove_product_from_cart(self, add_product_to_favorites):
         favorites_page = FavoritesPage()
         with allure.step("Добавляем товар в избранное"):
