@@ -6,3 +6,5 @@ selenium~=4.27.1
 pydantic_settings~=2.7.1
 requests~=2.32.3
 python-dotenv~=1.0.1
+jsonschema~=4.23.0
+Faker~=33.1.0
