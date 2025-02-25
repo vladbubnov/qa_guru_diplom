@@ -1,6 +1,6 @@
 import allure
 
-from conftest import browser_management
+from tests.conftest import browser_management
 from web.pages.favorites_page import FavoritesPage
 from web.pages.main_page import MainPage, add_product_to_favorites
 

@@ -1,6 +1,6 @@
 import allure
 
-from conftest import browser_management
+from tests.conftest import browser_management
 from web.pages.cart_page import CartPage
 from web.pages.main_page import MainPage
 from web.pages.main_page import add_product_to_cart
