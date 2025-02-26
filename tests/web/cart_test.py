@@ -21,6 +21,7 @@ class TestCart:
         browser = driver_management
         main_page = MainPage()
         index = 1
+        browser.open("/")
 
         with allure.step("Добавляем товар в корзину"):
             main_page.search_product("Розетка")
