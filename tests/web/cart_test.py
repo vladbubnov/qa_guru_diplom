@@ -7,7 +7,7 @@ from web.pages.cart_page import CartPage
 from web.pages.main_page import MainPage
 from web.pages.main_page import add_product_to_cart
 
-INDEX = 1
+COUNT = 1
 PRODUCT_ID = 126426
 
 
@@ -28,10 +28,10 @@ class TestCart:
             main_page.open_product(PRODUCT_ID)
 
         with allure.step("Добавляем товар в корзину"):
-            main_page.add_product_to_cart(INDEX)
+            main_page.add_product_to_cart()
 
-        with allure.step(f"Проверяем значение {INDEX} счетчика товаров в корзине"):
-            main_page.check_count_product_cart(INDEX)
+        with allure.step(f"Проверяем значение {COUNT} счетчика товаров в корзине"):
+            main_page.check_count_product_cart(COUNT)
 
     @allure.story("Добавление/удаление из корзины")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -47,10 +47,10 @@ class TestCart:
             main_page.open_product(PRODUCT_ID)
 
         with allure.step("Получаем наименование товара"):
-            product_name = main_page.get_text_product(INDEX)
+            product_name = main_page.get_text_product()
 
         with allure.step("Добавляем товар в корзину"):
-            main_page.add_product_to_cart(INDEX)
+            main_page.add_product_to_cart()
 
         with allure.step("Переходим в корзину"):
             main_page.click_cart_button()

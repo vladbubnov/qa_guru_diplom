@@ -14,9 +14,9 @@ class MainPage:
         browser.open("/")
 
     def open_product(self, product):
-        browser.open(f"/search/?q={product}")
+        browser.open(f"/product={product}")
 
-    def get_text_product(self, index):
+    def get_text_product(self):
         return browser.element('[data-test="product-title"]').locate().text
 
     def check_count_product_cart(self, count_product):
@@ -35,12 +35,12 @@ class MainPage:
         browser.element('[data-test="favorite-icon"]').click()
         browser.element(by.text("Избранные товары")).should(be.visible)
 
-    def add_product_to_cart(self, index):
-        browser.all('[data-test="add-to-cart-button"]').click()
+    def add_product_to_cart(self):
+        browser.element('[data-test="add-to-cart-button"]').click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
-    def add_product_to_favorites(self, index):
-        browser.all('[data-test="product-add-to-favorite-button"]').click()
+    def add_product_to_favorites(self):
+        browser.element('[data-test="product-add-to-favorite-button"]').click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
 

@@ -6,7 +6,7 @@ from tests.conftest import driver_management
 from web.pages.favorites_page import FavoritesPage
 from web.pages.main_page import MainPage, add_product_to_favorites
 
-INDEX = 1
+COUNT = 1
 PRODUCT_ID = 126426
 
 
@@ -27,10 +27,10 @@ class TestFavorites:
             main_page.open_product(PRODUCT_ID)
 
         with allure.step("Добавляем товар в избранное"):
-            main_page.add_product_to_favorites(INDEX)
+            main_page.add_product_to_favorites()
 
         with allure.step("Добавляем счетчик товаров в избранном"):
-            main_page.check_count_product_favorites(INDEX)
+            main_page.check_count_product_favorites(COUNT)
 
     @allure.story("Добавление/удаление из избранного")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -46,10 +46,10 @@ class TestFavorites:
             main_page.open_product(PRODUCT_ID)
 
         with allure.step("Получаем наименование товара"):
-            product_name = main_page.get_text_product(INDEX)
+            product_name = main_page.get_text_product()
 
         with allure.step("Добавляем товар в избранное"):
-            main_page.add_product_to_favorites(INDEX)
+            main_page.add_product_to_favorites()
 
         with allure.step("Переходим в избранное"):
             main_page.click_favourites_button()
