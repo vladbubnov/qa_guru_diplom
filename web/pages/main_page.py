@@ -36,11 +36,11 @@ class MainPage:
         browser.element(by.text("Избранные товары")).should(be.visible)
 
     def add_product_to_cart(self, index):
-        browser.all('[data-test="add-to-cart-button"]')[index].click()
+        browser.all('[data-test="add-to-cart-button"]').click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
     def add_product_to_favorites(self, index):
-        browser.all('[data-test="product-add-to-favorite-button"]')[index].click()
+        browser.all('[data-test="product-add-to-favorite-button"]').click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
 
