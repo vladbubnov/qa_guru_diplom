@@ -14,7 +14,7 @@ class MainPage:
         browser.open("/")
 
     def open_product(self, product):
-        browser.open(f"/product={product}")
+        browser.open(f"/product/{product}")
 
     def get_text_product(self):
         return browser.element('[data-test="product-title"]').locate().text
