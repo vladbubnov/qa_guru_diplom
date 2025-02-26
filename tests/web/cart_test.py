@@ -11,6 +11,22 @@ from web.pages.main_page import add_product_to_cart
 @allure.tag('web')
 @allure.feature("Корзина")
 class TestCart:
+    @allure.story("Добавление/удаление из корзины")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Vladislav Bubnov")
+    @allure.description("Тест проверяет изменение счетчика товаров в корзине")
+    @conftest.web
+    @pytest.mark.web
+    def test_сheck_cart(self, driver_management):
+        browser = driver_management
+        main_page = MainPage()
+        index = 1
+
+        with allure.step("Добавляем товар в корзину"):
+            main_page.search_product("Розетка")
+
+        with allure.step("Добавляем счетчик товаров в корзине"):
+            main_page.add_to_cart(index)
 
     @allure.story("Добавление/удаление из корзины")
     @allure.severity(allure.severity_level.CRITICAL)

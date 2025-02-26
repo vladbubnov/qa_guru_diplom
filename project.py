@@ -15,7 +15,7 @@ class Config(BaseSettings):
     selenoid_login: str = ''
     selenoid_password: str = ''
     browser_version: str = ''
-    base_url: str = 'https://www.vseinstrumenti.ru'
+    base_url: str = 'https://lemanapro.ru/'
     context: Literal['local_emulator', 'bstack', 'web', 'api'] = 'web'
     driver_remote_url: str = ''
     bstack_userName: str = ''

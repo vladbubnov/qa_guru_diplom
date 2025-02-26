@@ -37,6 +37,14 @@ class MainPage:
         browser.element('[data-qa="favorites-badge"]').should(be.visible)
 
 
+    def search_product(self, name):
+        browser.element('[data-qa="search-button"]').type(name).press_enter()
+        browser.element(by.text("Товары по запросу")).should(be.visible)
+
+    def add_to_cart(self, index):
+        browser.all('[data-qa="product-cart-button"]')[index].click()
+
+
 @pytest.fixture(scope='function')
 def add_product_to_cart(driver_management):
     driver_management.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
