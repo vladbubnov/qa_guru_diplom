@@ -30,11 +30,11 @@ def driver_management(request):
         browser.config.window_height = 1080
         browser.config.window_width = 1920
 
-        # driver = selenium_webdriver.Remote(
-        #     command_executor=project_config.get_selenoid_link(),
-        #     options=project_config.driver_options(request.param)
-        # )
-        # browser.config.driver = driver
+        driver = selenium_webdriver.Remote(
+            command_executor=project_config.get_selenoid_link(),
+            options=project_config.driver_options(request.param)
+        )
+        browser.config.driver = driver
 
     elif request.param == 'api':
         with allure.step('Start api test'):
