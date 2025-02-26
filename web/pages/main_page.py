@@ -38,11 +38,10 @@ class MainPage:
 
 
     def search_product(self, name):
-        browser.element('[id="search-input"]').click()
-        browser.element('[type="search"]').type(name).press_enter()
+        browser.element('[class="search-input"]').type(name).press_enter()
 
     def add_to_cart(self, index):
-        browser.all('[class="favorite-label"]')[index].click()
+        browser.all('[data-test="product-add-to-favorite"]')[index].click()
 
 
 @pytest.fixture(scope='function')

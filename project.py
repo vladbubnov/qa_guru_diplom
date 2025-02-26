@@ -15,7 +15,7 @@ class Config(BaseSettings):
     selenoid_login: str = ''
     selenoid_password: str = ''
     browser_version: str = ''
-    base_url: str = 'https://hoff.ru/'
+    base_url: str = 'https://petrovich.ru/'
     context: Literal['local_emulator', 'bstack', 'web', 'api'] = 'web'
     driver_remote_url: str = ''
     bstack_userName: str = ''
