@@ -48,7 +48,7 @@ class MainPage:
 def add_product_to_cart(driver_management):
     main_page = MainPage()
     main_page.open_product(126426)
-    driver_management.element('data-test="add-to-cart-button"]').click()
+    driver_management.element('[data-test="add-to-cart-button"]').click()
     main_page.click_cart_button()
 
     yield CartPage
