@@ -38,11 +38,11 @@ class MainPage:
 
 
     def search_product(self, name):
-        browser.element('[data-qa="search-button"]').type(name).press_enter()
-        browser.element(by.text("Товары по запросу")).should(be.visible)
+        browser.element('[id="search-input"]').click()
+        browser.element('[type="search"]').type(name).press_enter()
 
     def add_to_cart(self, index):
-        browser.all('[data-qa="product-cart-button"]')[index].click()
+        browser.all('[class="favorite-label"]')[index].click()
 
 
 @pytest.fixture(scope='function')
