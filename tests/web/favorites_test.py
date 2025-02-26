@@ -6,6 +6,9 @@ from tests.conftest import driver_management
 from web.pages.favorites_page import FavoritesPage
 from web.pages.main_page import MainPage, add_product_to_favorites
 
+INDEX = 1
+PRODUCT_NAME = "Саморез"
+
 
 @allure.tag('web')
 @allure.feature("Избранное")
@@ -18,18 +21,16 @@ class TestFavorites:
     @conftest.web
     @pytest.mark.web
     def test_count_product_cart(self, driver_management):
-        browser = driver_management
         main_page = MainPage()
-        index = 1
 
-        with allure.step("Открываем страницу шуроповертов"):
-            browser.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
+        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
+            main_page.open_search_product(PRODUCT_NAME)
 
         with allure.step("Добавляем товар в избранное"):
-            main_page.add_product_by_index_to_favorites(index)
+            main_page.add_product_by_index_to_favorites(INDEX)
 
         with allure.step("Добавляем счетчик товаров в избранном"):
-            main_page.check_count_product_favorites(index)
+            main_page.check_count_product_favorites(INDEX)
 
     @allure.story("Добавление/удаление из избранного")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -38,19 +39,17 @@ class TestFavorites:
     @conftest.web
     @pytest.mark.web
     def test_add_product_to_favourites(self, driver_management):
-        browser = driver_management
         main_page = MainPage()
         favorites_page = FavoritesPage()
-        index = 1
 
-        with allure.step("Открываем шуроповертов"):
-            browser.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
+        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
+            main_page.open_search_product(PRODUCT_NAME)
 
         with allure.step("Получаем наименование товара"):
-            product_name = main_page.get_text_product_by_index(index)
+            product_name = main_page.get_text_product_by_index(INDEX)
 
         with allure.step("Добавляем товар в избранное"):
-            main_page.add_product_by_index_to_favorites(index)
+            main_page.add_product_by_index_to_favorites(INDEX)
 
         with allure.step("Переходим в избранное"):
             main_page.click_favourites_button()

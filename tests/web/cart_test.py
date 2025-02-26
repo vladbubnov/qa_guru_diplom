@@ -7,27 +7,13 @@ from web.pages.cart_page import CartPage
 from web.pages.main_page import MainPage
 from web.pages.main_page import add_product_to_cart
 
+INDEX = 1
+PRODUCT_NAME = "Саморез"
+
 
 @allure.tag('web')
 @allure.feature("Корзина")
 class TestCart:
-    @allure.story("Добавление/удаление из корзины")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label("owner", "Vladislav Bubnov")
-    @allure.description("Тест проверяет изменение счетчика товаров в корзине")
-    @conftest.web
-    @pytest.mark.web
-    def test_сheck_cart(self, driver_management):
-        browser = driver_management
-        main_page = MainPage()
-        index = 1
-        browser.open("/")
-
-        with allure.step("Добавляем товар в корзину"):
-            main_page.search_product("Розетка")
-
-        with allure.step("Добавляем счетчик товаров в корзине"):
-            main_page.add_to_cart(index)
 
     @allure.story("Добавление/удаление из корзины")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -36,18 +22,16 @@ class TestCart:
     @conftest.web
     @pytest.mark.web
     def test_count_product_cart(self, driver_management):
-        browser = driver_management
         main_page = MainPage()
-        index = 1
 
-        with allure.step("Открываем страницу шуроповертов"):
-            browser.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
+        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
+            main_page.open_search_product(PRODUCT_NAME)
 
         with allure.step("Добавляем товар в корзину"):
-            main_page.add_product_by_index_to_cart(index)
+            main_page.add_product_by_index_to_cart(INDEX)
 
-        with allure.step("Добавляем счетчик товаров в корзине"):
-            main_page.check_count_product_cart(index)
+        with allure.step(f"Проверяем значение {INDEX} счетчика товаров в корзине"):
+            main_page.check_count_product_cart(INDEX)
 
     @allure.story("Добавление/удаление из корзины")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -56,19 +40,17 @@ class TestCart:
     @conftest.web
     @pytest.mark.web
     def test_add_product_to_cart(self, driver_management):
-        browser = driver_management
         main_page = MainPage()
         cart_page = CartPage()
-        index = 1
 
-        with allure.step("Открываем страницу шуроповертов"):
-            browser.open("/category/akkumulyatornye-dreli-shurupoverty-15/")
+        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
+            main_page.open_search_product(PRODUCT_NAME)
 
         with allure.step("Получаем наименование товара"):
-            product_name = main_page.get_text_product_by_index(index)
+            product_name = main_page.get_text_product_by_index(INDEX)
 
         with allure.step("Добавляем товар в корзину"):
-            main_page.add_product_by_index_to_cart(index)
+            main_page.add_product_by_index_to_cart(INDEX)
 
         with allure.step("Переходим в корзину"):
             main_page.click_cart_button()
