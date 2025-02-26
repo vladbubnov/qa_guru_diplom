@@ -7,7 +7,7 @@ from web.pages.favorites_page import FavoritesPage
 from web.pages.main_page import MainPage, add_product_to_favorites
 
 INDEX = 1
-PRODUCT_NAME = "Саморез"
+PRODUCT_ID = 126426
 
 
 @allure.tag('web')
@@ -23,11 +23,11 @@ class TestFavorites:
     def test_count_product_cart(self, driver_management):
         main_page = MainPage()
 
-        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
-            main_page.open_search_product(PRODUCT_NAME)
+        with allure.step(f"Открываем карточку товара id: {PRODUCT_ID}"):
+            main_page.open_product(PRODUCT_ID)
 
         with allure.step("Добавляем товар в избранное"):
-            main_page.add_product_by_index_to_favorites(INDEX)
+            main_page.add_product_to_favorites(INDEX)
 
         with allure.step("Добавляем счетчик товаров в избранном"):
             main_page.check_count_product_favorites(INDEX)
@@ -42,14 +42,14 @@ class TestFavorites:
         main_page = MainPage()
         favorites_page = FavoritesPage()
 
-        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
-            main_page.open_search_product(PRODUCT_NAME)
+        with allure.step(f"Открываем карточку товара id: {PRODUCT_ID}"):
+            main_page.open_product(PRODUCT_ID)
 
         with allure.step("Получаем наименование товара"):
-            product_name = main_page.get_text_product_by_index(INDEX)
+            product_name = main_page.get_text_product(INDEX)
 
         with allure.step("Добавляем товар в избранное"):
-            main_page.add_product_by_index_to_favorites(INDEX)
+            main_page.add_product_to_favorites(INDEX)
 
         with allure.step("Переходим в избранное"):
             main_page.click_favourites_button()

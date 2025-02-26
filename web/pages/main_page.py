@@ -13,11 +13,11 @@ class MainPage:
     def open_page(self):
         browser.open("/")
 
-    def open_search_product(self, product):
+    def open_product(self, product):
         browser.open(f"/search/?q={product}")
 
-    def get_text_product_by_index(self, index):
-        return browser.all('[data-test="product-title"]')[index].locate().text
+    def get_text_product(self, index):
+        return browser.element('[data-test="product-title"]').locate().text
 
     def check_count_product_cart(self, count_product):
         (browser.element('[data-test="cart-link"]').element('[class="badge-counter"]')
@@ -35,20 +35,20 @@ class MainPage:
         browser.element('[data-test="favorite-icon"]').click()
         browser.element(by.text("Избранные товары")).should(be.visible)
 
-    def add_product_by_index_to_cart(self, index):
-        browser.all('[data-test="product-add-to-cart"]')[index].click()
+    def add_product_to_cart(self, index):
+        browser.all('[data-test="add-to-cart-button"]')[index].click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
-    def add_product_by_index_to_favorites(self, index):
-        browser.all('[data-test="product-add-to-favorite"]')[index].click()
+    def add_product_to_favorites(self, index):
+        browser.all('[data-test="product-add-to-favorite-button"]')[index].click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
 
 @pytest.fixture(scope='function')
 def add_product_to_cart(driver_management):
     main_page = MainPage()
-    main_page.open_search_product("Саморез")
-    driver_management.all('[data-test="product-add-to-cart"]').first.click()
+    main_page.open_product(126426)
+    driver_management.element('data-test="add-to-cart-button"]').click()
     main_page.click_cart_button()
 
     yield CartPage
@@ -57,8 +57,8 @@ def add_product_to_cart(driver_management):
 @pytest.fixture(scope='function')
 def add_product_to_favorites(driver_management):
     main_page = MainPage()
-    main_page.open_search_product("Саморез")
-    driver_management.all('[data-test="product-add-to-favorite"]').first.click()
+    main_page.open_product(126426)
+    driver_management.element('[data-test="product-add-to-favorite-button"]').click()
     driver_management.element('[class="badge-counter"]').should(be.visible)
     main_page.click_favourites_button()
 

@@ -8,7 +8,7 @@ from web.pages.main_page import MainPage
 from web.pages.main_page import add_product_to_cart
 
 INDEX = 1
-PRODUCT_NAME = "Саморез"
+PRODUCT_ID = 126426
 
 
 @allure.tag('web')
@@ -24,11 +24,11 @@ class TestCart:
     def test_count_product_cart(self, driver_management):
         main_page = MainPage()
 
-        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
-            main_page.open_search_product(PRODUCT_NAME)
+        with allure.step(f"Открываем карточку товара id: {PRODUCT_ID}"):
+            main_page.open_product(PRODUCT_ID)
 
         with allure.step("Добавляем товар в корзину"):
-            main_page.add_product_by_index_to_cart(INDEX)
+            main_page.add_product_to_cart(INDEX)
 
         with allure.step(f"Проверяем значение {INDEX} счетчика товаров в корзине"):
             main_page.check_count_product_cart(INDEX)
@@ -43,14 +43,14 @@ class TestCart:
         main_page = MainPage()
         cart_page = CartPage()
 
-        with allure.step(f"Открываем страницу и выполняем поиск товара {PRODUCT_NAME}"):
-            main_page.open_search_product(PRODUCT_NAME)
+        with allure.step(f"Открываем карточку товара id: {PRODUCT_ID}"):
+            main_page.open_product(PRODUCT_ID)
 
         with allure.step("Получаем наименование товара"):
-            product_name = main_page.get_text_product_by_index(INDEX)
+            product_name = main_page.get_text_product(INDEX)
 
         with allure.step("Добавляем товар в корзину"):
-            main_page.add_product_by_index_to_cart(INDEX)
+            main_page.add_product_to_cart(INDEX)
 
         with allure.step("Переходим в корзину"):
             main_page.click_cart_button()
