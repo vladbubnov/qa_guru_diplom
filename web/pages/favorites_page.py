@@ -7,7 +7,7 @@ class FavoritesPage:
         browser.element('[data-test="product-title"]').should(have.text(product_name))
 
     def delete_product(self):
-        browser.element('[data-test="product-add-to-favorite"]').click()
+        browser.element('[data-test="product-add-to-favorite"]').should(be.visible).click()
 
     def check_empty_favorites(self):
         browser.driver.refresh()

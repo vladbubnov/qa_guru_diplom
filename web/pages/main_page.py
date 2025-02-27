@@ -1,11 +1,8 @@
-import time
-
 import pytest
-from selene import browser, by, query, have, be
+from selene import browser, by, have, be
 
 from web.pages.cart_page import CartPage
 from web.pages.favorites_page import FavoritesPage
-from web.pages.modal_page import ModalPage
 
 
 class MainPage:
@@ -28,19 +25,19 @@ class MainPage:
          .element('[class="badge-counter"]').should(have.text(str(count_product))))
 
     def click_cart_button(self):
-        browser.element('[data-test="cart-link"]').click()
+        browser.element('[data-test="cart-link"]').should(be.visible).click()
         browser.element(by.text("Корзина")).should(be.visible)
 
     def click_favourites_button(self):
-        browser.element('[data-test="favorite-icon"]').click()
+        browser.element('[data-test="favorite-icon"]').should(be.visible).click()
         browser.element(by.text("Избранные товары")).should(be.visible)
 
     def add_product_to_cart(self):
-        browser.element('[data-test="add-to-cart-button"]').click()
+        browser.element('[data-test="add-to-cart-button"]').should(be.visible).click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
     def add_product_to_favorites(self):
-        browser.element('[data-test="product-add-to-favorite-button"]').click()
+        browser.element('[data-test="product-add-to-favorite-button"]').should(be.visible).click()
         browser.element('[class="badge-counter"]').should(be.visible)
 
 
@@ -48,7 +45,7 @@ class MainPage:
 def add_product_to_cart(driver_management):
     main_page = MainPage()
     main_page.open_product(126426)
-    driver_management.element('[data-test="add-to-cart-button"]').click()
+    main_page.add_product_to_cart()
     main_page.click_cart_button()
 
     yield CartPage
@@ -58,8 +55,7 @@ def add_product_to_cart(driver_management):
 def add_product_to_favorites(driver_management):
     main_page = MainPage()
     main_page.open_product(126426)
-    driver_management.element('[data-test="product-add-to-favorite-button"]').click()
-    driver_management.element('[class="badge-counter"]').should(be.visible)
+    main_page.add_product_to_favorites()
     main_page.click_favourites_button()
 
     yield FavoritesPage

@@ -7,7 +7,7 @@ class CartPage:
         browser.element('[data-test="product-title"]').should(have.text(product_name))
 
     def delete_product(self):
-        browser.element('[data-test="data-test-deleteCallback"]').click()
+        browser.element('[data-test="data-test-deleteCallback"]').should(be.visible).click()
 
     def check_empty_cart(self):
         browser.element(by.text('Корзина пуста.')).should(be.visible)
