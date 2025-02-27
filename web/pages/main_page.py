@@ -17,12 +17,22 @@ class MainPage:
         return browser.element('[data-test="product-title"]').locate().text
 
     def check_count_product_cart(self, count_product):
-        (browser.element('[data-test="cart-link"]').element('[class="badge-counter"]')
-         .should(have.text(str(count_product))))
+        (
+            browser
+            .element('[data-test="cart-link"]')
+            .element('[class="badge-counter"]')
+            .should(be.visible)
+            .should(have.text(str(count_product)))
+        )
 
     def check_count_product_favorites(self, count_product):
-        (browser.element('[data-test="favorite-icon"]')
-         .element('[class="badge-counter"]').should(have.text(str(count_product))))
+        (
+            browser
+            .element('[data-test="favorite-icon"]')
+            .element('[class="badge-counter"]')
+            .should(be.visible)
+            .should(have.text(str(count_product)))
+        )
 
     def click_cart_button(self):
         browser.element('[data-test="cart-link"]').should(be.visible).click()
