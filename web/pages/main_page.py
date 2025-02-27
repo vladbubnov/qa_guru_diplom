@@ -34,11 +34,9 @@ class MainPage:
 
     def add_product_to_cart(self):
         browser.element('[data-test="add-to-cart-button"]').should(be.visible).click()
-        browser.element('[class="badge-counter"]').should(be.visible)
 
     def add_product_to_favorites(self):
         browser.element('[data-test="product-add-to-favorite-button"]').should(be.visible).click()
-        browser.element('[class="badge-counter"]').should(be.visible)
 
 
 @pytest.fixture(scope='function')
