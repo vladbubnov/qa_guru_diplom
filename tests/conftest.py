@@ -29,6 +29,7 @@ def driver_management(request):
         browser.config.base_url = project_config.base_url
         browser.config.window_height = 1080
         browser.config.window_width = 1920
+        browser.config.timeout = project_config.timeout
 
         driver = selenium_webdriver.Remote(
             command_executor=project_config.get_selenoid_link(),
