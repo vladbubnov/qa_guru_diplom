@@ -6,6 +6,7 @@ from faker import Faker
 
 from api.requests.pet_requests import create_new_pet, get_pet_by_id, delete_pet_by_id
 from api.schemas.pet_schemas import create_pet, get_pet, delete_pet
+from tests import conftest
 
 faker = Faker("ru_RU")
 
@@ -18,6 +19,8 @@ class TestPet:
     @allure.story('Создать питомца')
     @allure.severity(Severity.CRITICAL)
     @allure.label('owner', 'Vladislav Bubnov')
+    @conftest.api
+    @pytest.mark.api
     def test_add_pet(self):
         pet_name = faker.user_name()
         response = create_new_pet(pet_name=pet_name)
@@ -33,6 +36,8 @@ class TestPet:
     @allure.story('Получить питомца')
     @allure.severity(Severity.CRITICAL)
     @allure.label('owner', 'Vladislav Bubnov')
+    @conftest.api
+    @pytest.mark.api
     @pytest.mark.parametrize("pet_id, expected_status, expected_response", [
         (None, 200, faker.user_name()),
         (9999999999999, 404, "Pet not found")
@@ -59,6 +64,8 @@ class TestPet:
     @allure.story('Удалить питомца')
     @allure.severity(Severity.CRITICAL)
     @allure.label('owner', 'Vladislav Bubnov')
+    @conftest.api
+    @pytest.mark.api
     @pytest.mark.parametrize("pet_id, expected_status, expected_message", [
         (None, 200, None),
         (999999, 404, None)
