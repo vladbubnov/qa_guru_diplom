@@ -1,37 +1,16 @@
-from dotenv import load_dotenv
-from selenium import webdriver as selenium_webdriver
-from appium import webdriver as appium_webdriver
-from selene import browser, support
-import pytest
 import allure
-import allure_commons
-from utils import file
-from utils import allure_utils
+import pytest
+from appium import webdriver as appium_webdriver
+from selene import browser
+from selenium import webdriver as selenium_webdriver
+
 import project
-
-
-# def pytest_addoption(parser):
-#     parser.addoption(
-#         "--context",
-#         default="bstack",
-#         help="Specify the test context"
-#     )
-
-
-# def pytest_configure(config):
-#     context = config.getoption("--context")
-#     env_file_path = f".env.{context}"
-#
-#     load_dotenv(dotenv_path=env_file_path)
-#
-#
-# @pytest.fixture
-# def context(request):
-#     return request.config.getoption("--context")
-
+from utils import allure_utils
+from utils import file
 
 project_config = project.Config(_env_file=file.relative_from_root(
     f'.env.{project.Config().context}') if project.Config().context != 'api' else '')
+
 
 @pytest.fixture(scope='function', autouse=True)
 def driver_management(request):
@@ -42,9 +21,6 @@ def driver_management(request):
             )
 
         browser.config.timeout = project_config.timeout
-        browser.config._wait_decorator = support._logging.wait_with(
-            context=allure_commons._allure.StepContext
-        )
 
     elif request.param == 'web':
         browser.config.base_url = project_config.base_url
@@ -83,6 +59,7 @@ def driver_management(request):
             browser.quit()
 
     if project_config.context == 'bstack':
+
         allure_utils.attach_bstack_video(session_id, project_config.bstack_userName,
                                          project_config.bstack_accessKey)
 

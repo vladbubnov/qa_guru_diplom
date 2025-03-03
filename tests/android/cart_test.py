@@ -3,7 +3,6 @@ import pytest
 
 from pages.android.cart_page import CartPage
 from pages.android.main_page import MainPage
-from pages.android.product_page import ProductPage
 from pages.android.search_page import SearchPage
 from tests import conftest
 
@@ -24,7 +23,6 @@ class TestCart:
     def test_add_product_to_cart(self, driver_management):
         main_page = MainPage()
         search_page = SearchPage()
-        product_page = ProductPage()
         cart_page = CartPage()
 
         with allure.step("Пропускаем онбординг"):
@@ -32,9 +30,6 @@ class TestCart:
 
         with allure.step(f"Выполняем поиск товара по наименованию: {PRODUCT_NAME}"):
             main_page.search_product(PRODUCT_NAME)
-
-        # with allure.step(f"Откраем карточку товара по индексу: {INDEX}"):
-        #     search_page.open_product_card_by_index(INDEX)
 
         with allure.step("Добавляем товар в корзину"):
             search_page.add_product_to_cart_by_index(INDEX)

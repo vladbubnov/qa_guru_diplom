@@ -21,6 +21,8 @@ class Config(BaseSettings):
     bstack_userName: str = ''
     bstack_accessKey: str = ''
     timeout: float = 10.0
+    platform_name: str = ''
+    platform_version: str = ''
     android_app_url: str = ''
     app_wait_activity: str = ''
     app: str = ''
@@ -30,15 +32,15 @@ class Config(BaseSettings):
     # android_device_uid: str = ''
     # android_avd: str = ''
 
-    # @property
-    # def bstack_credentials(self):
-    #     load_dotenv(file.relative_from_root('.env.bstack_credentials'))
-    #     self.bstack_userName = os.getenv('bstack_userName')
-    #     self.bstack_accessKey = os.getenv('bstack_accessKey')
-    #     return {
-    #         'userName': self.bstack_userName,
-    #         'accessKey': self.bstack_accessKey
-    #     }
+    @property
+    def bstack_credentials(self):
+        load_dotenv(file.relative_from_root('.env.bstack_credentials'))
+        self.bstack_userName = os.getenv('bstack_userName')
+        self.bstack_accessKey = os.getenv('bstack_accessKey')
+        return {
+            'userName': self.bstack_userName,
+            'accessKey': self.bstack_accessKey
+        }
 
     def get_selenoid_link(self):
         load_dotenv(file.relative_from_root('.env.selenoid_credentials'))
@@ -69,15 +71,12 @@ class Config(BaseSettings):
                 options.set_capability('platformVersion', os.getenv('PLATFORM_VERSION'))
                 options.set_capability('appWaitActivity', os.getenv('APP_WAIT_ACTIVITY'))
                 options.set_capability('app', os.getenv('APP'))
-                load_dotenv(dotenv_path=file.relative_from_root(
-                    '.env.credentials'))
                 options.set_capability(
                     'bstack:options', {
                         'projectName': '',
                         'buildName': 'browserstack-petrovich',
                         'sessionName': 'BStack test',
-                        'userName': os.getenv('USER_NAME'),
-                        'accessKey': os.getenv('ACCESS_KEY'),
+                        **self.bstack_credentials
                     },
                 )
 
