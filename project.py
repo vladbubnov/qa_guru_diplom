@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 
 from utils import file
 
-BASE_DIR = os.path.dirname(__file__)
+# BASE_DIR = os.path.dirname(__file__)
 
 
 class Config(BaseSettings):
@@ -17,15 +17,16 @@ class Config(BaseSettings):
     browser_version: str = ''
     base_url: str = 'https://petrovich.ru/'
     context: Literal['local_emulator', 'bstack', 'web', 'api'] = 'web'
-    driver_remote_url: str = ''
+    remote_url: str = ''
     bstack_userName: str = ''
     bstack_accessKey: str = ''
     timeout: float = 10.0
-    # android_app_url: str = ''
-    # appWaitActivity: str = ''
+    android_app_url: str = ''
+    app_wait_activity: str = ''
+    app: str = ''
     #
     # android_platformVersion: Literal['11.0', '12.0', '13.0', '10.0'] = '11.0'
-    # android_deviceName: str = ''
+    device_name: str = ''
     # android_device_uid: str = ''
     # android_avd: str = ''
 
@@ -45,14 +46,15 @@ class Config(BaseSettings):
         self.selenoid_password = os.getenv('selenoid_password')
         return f"https://{self.selenoid_login}:{self.selenoid_password}@selenoid.autotests.cloud/wd/hub"
 
-    def is_bstack_run(self):
-        self.android_app_url.startswith('bs://')
+    # def is_bstack_run(self):
+    #     self.android_app_url.startswith('bs://')
 
     def driver_options(self, platform_name):
         if platform_name == 'android':
             options = UiAutomator2Options()
 
             if self.context == 'local_emulator':
+                load_dotenv(file.relative_from_root('.env.local_emulator'))
                 options.set_capability('remote_url', os.getenv('REMOTE_URL'))
                 options.set_capability('deviceName', os.getenv('DEVICE_NAME'))
                 options.set_capability('appWaitActivity', os.getenv(
@@ -60,6 +62,7 @@ class Config(BaseSettings):
                 options.set_capability('app', file.relative_from_root(os.getenv('APP')))
 
             if self.context == 'bstack':
+                load_dotenv(file.relative_from_root('.env.bstack'))
                 options.set_capability('remote_url', os.getenv('REMOTE_URL'))
                 options.set_capability('deviceName', os.getenv('DEVICE_NAME'))
                 options.set_capability('platformName', os.getenv('PLATFORM_NAME'))
@@ -71,7 +74,7 @@ class Config(BaseSettings):
                 options.set_capability(
                     'bstack:options', {
                         'projectName': '',
-                        'buildName': 'browserstack-build-1',
+                        'buildName': 'browserstack-petrovich',
                         'sessionName': 'BStack test',
                         'userName': os.getenv('USER_NAME'),
                         'accessKey': os.getenv('ACCESS_KEY'),

@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from selenium import webdriver as selenium_webdriver
 from appium import webdriver as appium_webdriver
 from selene import browser, support
@@ -8,16 +9,36 @@ from utils import file
 from utils import allure_utils
 import project
 
+
+# def pytest_addoption(parser):
+#     parser.addoption(
+#         "--context",
+#         default="bstack",
+#         help="Specify the test context"
+#     )
+
+
+# def pytest_configure(config):
+#     context = config.getoption("--context")
+#     env_file_path = f".env.{context}"
+#
+#     load_dotenv(dotenv_path=env_file_path)
+#
+#
+# @pytest.fixture
+# def context(request):
+#     return request.config.getoption("--context")
+
+
 project_config = project.Config(_env_file=file.relative_from_root(
     f'.env.{project.Config().context}') if project.Config().context != 'api' else '')
 
-
 @pytest.fixture(scope='function', autouse=True)
 def driver_management(request):
-    if request.param =='android':
+    if request.param == 'android':
         with allure.step('init app session'):
             browser.config.driver = appium_webdriver.Remote(
-                project_config.driver_remote_url, options=project_config.driver_options(request.param)
+                project_config.remote_url, options=project_config.driver_options(request.param)
             )
 
         browser.config.timeout = project_config.timeout

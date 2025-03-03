@@ -3,8 +3,8 @@ import pytest
 
 from tests import conftest
 from tests.conftest import driver_management
-from web.pages.favorites_page import FavoritesPage
-from web.pages.main_page import MainPage, add_product_to_favorites
+from pages.web.favorites_page import FavoritesPage
+from pages.web.main_page import MainPage, add_product_to_favorites
 
 COUNT = 1
 PRODUCT_ID = 126426
