@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.options import Options
 
 from utils import file
 
-# BASE_DIR = os.path.dirname(__file__)
 
 
 class Config(BaseSettings):
@@ -26,11 +25,7 @@ class Config(BaseSettings):
     android_app_url: str = ''
     app_wait_activity: str = ''
     app: str = ''
-    #
-    # android_platformVersion: Literal['11.0', '12.0', '13.0', '10.0'] = '11.0'
     device_name: str = ''
-    # android_device_uid: str = ''
-    # android_avd: str = ''
 
     @property
     def bstack_credentials(self):
@@ -47,9 +42,6 @@ class Config(BaseSettings):
         self.selenoid_login = os.getenv('selenoid_login')
         self.selenoid_password = os.getenv('selenoid_password')
         return f"https://{self.selenoid_login}:{self.selenoid_password}@selenoid.autotests.cloud/wd/hub"
-
-    # def is_bstack_run(self):
-    #     self.android_app_url.startswith('bs://')
 
     def driver_options(self, platform_name):
         if platform_name == 'android':
