@@ -59,8 +59,7 @@ class Config(BaseSettings):
                 load_dotenv(file.relative_from_root('.env.local_emulator'))
                 options.set_capability('remote_url', os.getenv('REMOTE_URL'))
                 options.set_capability('deviceName', os.getenv('DEVICE_NAME'))
-                options.set_capability('appWaitActivity', os.getenv(
-                    'APP_WAIT_ACTIVITY'))
+                options.set_capability('appWaitActivity', os.getenv('APP_WAIT_ACTIVITY'))
                 options.set_capability('app', file.relative_from_root(os.getenv('APP')))
 
             if self.context == 'bstack':
@@ -73,7 +72,7 @@ class Config(BaseSettings):
                 options.set_capability('app', os.getenv('APP'))
                 options.set_capability(
                     'bstack:options', {
-                        'projectName': '',
+                        'projectName': 'petrovich',
                         'buildName': 'browserstack-petrovich',
                         'sessionName': 'BStack test',
                         **self.bstack_credentials
