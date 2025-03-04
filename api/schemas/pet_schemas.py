@@ -41,47 +41,67 @@ create_pet = {
     ]
 }
 
-get_pet = {
-    "$schema": "http://json-schema.org/draft-07/schema#",
+get_pets_status = {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
     "type": "object",
     "properties": {
-        "id": {
+      "id": {
+        "type": "number"
+      },
+      "category": {
+        "type": "object",
+        "properties": {
+          "id": {
             "type": "number"
-        },
-        "name": {
+          },
+          "name": {
             "type": "string"
+          }
         },
-        "photoUrls": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "tags": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "number"
-                    },
-                    "name": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "name"
-                ]
-            }
+        "required": [
+          "id"
+        ]
+      },
+      "name": {
+        "type": "string"
+      },
+      "photoUrls": {
+        "type": "array",
+        "items": {
+          "type": "string"
         }
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      },
+      "status": {
+        "type": "string",
+        "enum": ["available", "pending", "sold"]
+      }
     },
     "required": [
-        "id",
-        "name",
-        "photoUrls",
-        "tags"
+      "id",
+      "photoUrls",
+      "tags",
+      "status"
     ]
+  }
 }
 
 get_pet_negative = {

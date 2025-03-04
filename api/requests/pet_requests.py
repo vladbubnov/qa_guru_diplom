@@ -6,6 +6,7 @@ from api.requests.requests_method import post, get, delete
 
 API_URL = 'https://petstore.swagger.io'
 ENDPOINT_POST_PET = '/v2/pet/'
+ENDPOINT_GET_PETS_BY_STATUS = '/v2/pet/findByStatus?status='
 
 
 def create_new_pet(pet_name):
@@ -24,10 +25,10 @@ def create_new_pet(pet_name):
         return post(full_url, headers, payload)
 
 
-def get_pet_by_id(pet_id):
-    full_url = API_URL + ENDPOINT_POST_PET + f'{pet_id}'
+def get_pets_by_status(status):
+    full_url = API_URL + ENDPOINT_GET_PETS_BY_STATUS + f'{status}'
 
-    with allure.step('Отправляем запрос на получение питомца по id'):
+    with allure.step('Отправляем запрос на получение питомцев по статусу'):
         return get(full_url)
 
 

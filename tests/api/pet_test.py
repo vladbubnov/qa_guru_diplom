@@ -4,8 +4,8 @@ from allure_commons.types import Severity
 from jsonschema import validate
 from faker import Faker
 
-from api.requests.pet_requests import create_new_pet, get_pet_by_id, delete_pet_by_id
-from api.schemas.pet_schemas import create_pet, get_pet, delete_pet
+from api.requests.pet_requests import create_new_pet, delete_pet_by_id, get_pets_by_status
+from api.schemas.pet_schemas import create_pet, delete_pet, get_pets_status
 from tests import conftest
 
 faker = Faker("ru_RU")
@@ -38,28 +38,25 @@ class TestPet:
     @allure.label('owner', 'Vladislav Bubnov')
     @conftest.api
     @pytest.mark.api
-    @pytest.mark.parametrize("pet_id, expected_status, expected_response", [
-        (None, 200, faker.user_name()),
-        (9999999999999, 404, "Pet not found")
+    @pytest.mark.parametrize("status", [
+        "available",
+        "pending",
+        "sold"
     ])
-    def test_get_pet(self, pet_id, expected_status, expected_response):
+    def test_get_pet_by_status(self, status):
 
-        if pet_id is None:
-            pet = create_new_pet(pet_name=expected_response)
-            response = get_pet_by_id(pet.json()['id'])
-        else:
-            response = get_pet_by_id(pet_id)
+        response = get_pets_by_status(status)
 
-        with allure.step(f'Проверяем статус код ответа: {expected_status}'):
-            assert response.status_code == expected_status
+        with allure.step(f'Проверяем статус код ответа: 200'):
+            assert response.status_code == 200
 
-        if expected_status == 200:
-            with allure.step(f'Проверяем имя питомца: {expected_response}'):
-                assert response.json()['name'] == expected_response
-            validate(response.json(), get_pet)
-        elif expected_status == 404:
-            with allure.step(f'Проверяем сообщение об ошибке: {expected_response}'):
-                assert response.json()['message'] == expected_response
+        pets = response.json()
+
+        with allure.step(f'Проверяем статус  каждого питомца в ответе'):
+            for pet in pets:
+                assert pet['status'] == status, f"Ожидается статус {status}, но получен {pet['status']}"
+
+        validate(pets, get_pets_status)
 
     @allure.story('Удалить питомца')
     @allure.severity(Severity.CRITICAL)
