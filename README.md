@@ -41,7 +41,7 @@ context={контекст} pytest -m {проект}
 
 ----
 ### Удаленный запуск автотестов выполняется на сервере Jenkins
-> <a target="_blank" href="https://jenkins.autotests.cloud/job/LitresTestProject/">Проект в Jenkins</a>
+> <a target="_blank" href="https://jenkins.autotests.cloud/job/qa_guru_diplom_bubnov/">Проект в Jenkins</a>
 
 #### Параметры сборки
 
