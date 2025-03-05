@@ -74,7 +74,7 @@ context={контекст} pytest -m {проект}
 ### Полная статистика по прохождению тестпланов, отчёты и приложения к ним хранятся в Allure TestOps
 > <a target="_blank" href="https://allure.autotests.cloud/project/4657/dashboards">Ссылка на проект в AllureTestOps</a>
 
-![This is an image](project_files/project_testops.png)
+![This is an image](project_files/project_testop.png)
 
 ----
 ### В проекте настроена отправка краткого отчета в Telegram
