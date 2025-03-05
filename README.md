@@ -62,7 +62,7 @@ context={контекст} pytest -m {проект}
 ### Отчет о прохождении тестов (Allure)
 Для получения отчета нужно нажать на иконку allure report'a в строке билда  
 
-![This is an image](project_files/allure_report.png)
+![This is an image](project_files/allure_report_jenkins.png)
 #### Пример отчета о прохождении ui-теста
 ![This is an image](project_files/test_web.png)
 #### Пример отчета о прохождении api-теста
