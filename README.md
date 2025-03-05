@@ -79,3 +79,9 @@ context={контекст} pytest -m {проект}
 ----
 ### В проекте настроена отправка краткого отчета в Telegram
 ![This is an image](project_files/project_telegram.png)
+
+### Связь
+По всем вопросам связанным с проектом обращайтесь по следующим каналам:
+
+- Email: vladbubnov.qa@gmail.com
+- Telegram: @vladbubnov
