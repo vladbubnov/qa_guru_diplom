@@ -75,3 +75,7 @@ context={контекст} pytest -m {проект}
 > <a target="_blank" href="https://allure.autotests.cloud/project/4657/dashboards">Ссылка на проект в AllureTestOps</a>
 
 ![This is an image](project_files/project_testops.png)
+
+----
+### В проекте настроена отправка краткого отчета в Telegram
+![This is an image](project_files/project_telegram.png)
