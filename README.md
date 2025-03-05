@@ -69,3 +69,9 @@ context={контекст} pytest -m {проект}
 ![This is an image](project_files/test_api.png)
 #### Пример отчета о прохождении mobile-теста
 ![This is an image](project_files/test_android.png)
+
+----
+### Полная статистика по прохождению тестпланов, отчёты и приложения к ним хранятся в Allure TestOps
+> <a target="_blank" href="https://allure.autotests.cloud/project/4657/dashboards">Ссылка на проект в AllureTestOps</a>
+
+![This is an image](project_files/project_testops.png)
