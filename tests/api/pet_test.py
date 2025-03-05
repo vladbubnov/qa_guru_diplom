@@ -33,7 +33,7 @@ class TestPet:
 
         validate(response.json(), create_pet)
 
-    @allure.story('Получить питомца')
+    @allure.story('Получить питомцев по статусу')
     @allure.severity(Severity.CRITICAL)
     @allure.label('owner', 'Vladislav Bubnov')
     @conftest.api
