@@ -38,3 +38,22 @@ source .venv/bin/activate
 pip install -r requirements.txt
 context={контекст} pytest -m {проект}  
 ```
+
+----
+### Удаленный запуск автотестов выполняется на сервере Jenkins
+> <a target="_blank" href="https://jenkins.autotests.cloud/job/LitresTestProject/">Проект в Jenkins</a>
+
+#### Параметры сборки
+
+* `project` - проект
+* `project` - контекст
+
+
+#### Для запуска автотестов в Jenkins
+
+1. Открыть <a target="_blank" href="https://jenkins.autotests.cloud/job/qa_guru_diplom_bubnov/">проект</a>
+2. Выбрать пункт `Build with Parameters`
+3. Выбрать проект
+4. Выбрать контекст (см. описание)
+5. Нажать кнопку `Build`
+6. Результат запуска сборки можно посмотреть в отчёте Allure
