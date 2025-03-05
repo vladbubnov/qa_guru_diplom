@@ -27,7 +27,7 @@
 
 ----
 ### Проект реализован с использованием:
-<img src="project_files/python-original.svg" width="50"> <img src="project_files/intellij_pycharm.png" width="50"> <img src="project_files/pytest.png" width="50"> <img src="project_files/selenium.png" width="50"> <img src="project_files/selene.png" width="50"> <img src="project_files/selenoid.png" width="50"> <img src="project_files/jenkins.png" width="50"> <img src="project_files/allure_report.png" width="50"> <img src="project_files/allure_testops.png" width="50"> <img src="project_files/tg.png" width="50"> 
+<img src="project_files/python-original.svg" width="50"> <img src="project_files/intellij_pycharm.png" width="50"> <img src="project_files/pytest.png" width="50"> <img src="project_files/selenium.png" width="50"> <img src="project_files/selene.png" width="50"> <img src="project_files/selenoid.png" width="50"> <img src="project_files/jenkins.png" width="50"> <img src="project_files/allure_reports.png" width="50"> <img src="project_files/allure_testops.png" width="50"> <img src="project_files/tg.png" width="50"> 
 
 ----
 ### Локальный запуск
@@ -46,7 +46,7 @@ context={контекст} pytest -m {проект}
 #### Параметры сборки
 
 * `project` - проект
-* `project` - контекст
+* `context` - контекст
 
 
 #### Для запуска автотестов в Jenkins
@@ -57,3 +57,8 @@ context={контекст} pytest -m {проект}
 4. Выбрать контекст (см. описание)
 5. Нажать кнопку `Build`
 6. Результат запуска сборки можно посмотреть в отчёте Allure
+
+----
+### Отчет о прохождении тестов (Allure)
+Для получения отчета нужно нажать на иконку allure report'a в строке билда  
+<img src="project_files/allure_report.png">
