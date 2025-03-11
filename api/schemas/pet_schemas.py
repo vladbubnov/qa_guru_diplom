@@ -70,7 +70,7 @@ get_pets_status = {
       "photoUrls": {
         "type": "array",
         "items": {
-          "type": "string"
+          "type": ["string", "None"]
         }
       },
       "tags": {
