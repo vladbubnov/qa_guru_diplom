@@ -18,12 +18,10 @@ class MainPage:
     def skip_onboarding(self):
         if browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/buttonAction')).should(be.visible):
             browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/buttonAction')).click()
-            browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/buttonAction')).click()
-            browser.element((AppiumBy.ID,
-                            'com.android.permissioncontroller:id/permission_allow_foreground_only_button')).click()
-            browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/statefulMaterialButtonSelectCity')).click()
-            browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/buttonAnotherTime')).click()
-
-
-
-
+            browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/buttonAction')).should(be.visible).click()
+            (browser.element(
+                (AppiumBy.ID, 'com.android.permissioncontroller:id/permission_allow_foreground_only_button'))
+             .should(be.visible).click())
+            browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/statefulMaterialButtonSelectCity')).should(
+                be.visible).click()
+            browser.element((AppiumBy.ID, 'ru.handh.petrovich:id/buttonAnotherTime')).should(be.visible).click()
